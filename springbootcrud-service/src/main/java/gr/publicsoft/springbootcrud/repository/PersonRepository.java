@@ -1,7 +1,9 @@
 package gr.publicsoft.springbootcrud.repository;
 
 import gr.publicsoft.springbootcrud.model.Person;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,8 +22,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @ApiOperation("Finds a Person by their email")
     Person findByEmail(String email);
 
-    @ApiOperation("Fetches a list of active Persons")
-    List<Person> findByIsActive(boolean isActive);
+    @ApiOperation("Fetches a list of active/inactive Persons")
+    List<Person> findByActive(boolean isActive);
 
     @ApiOperation("Searches for Persons by their name or email")
     @Query("SELECT p FROM Person p "
@@ -31,7 +33,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @ApiOperation("Counts active users")
     @Query("SELECT COUNT(p) FROM Person p "
-            + "WHERE p.isActive = true "
+            + "WHERE p.active = true "
             + "     AND p.email IS NOT NULL ")
     Long countActiveUsers();
 

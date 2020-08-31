@@ -17,9 +17,9 @@ public class Person {
     private long id;
 
     @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private Boolean isActive;
+    @NotNull(message = "Active is mandatory")
+    @Column(nullable = false, name = "isActive")
+    private Boolean active;
 
     @NotBlank(message = "Name is mandatory")
     @Size(max = SIZE_M)
@@ -53,11 +53,11 @@ public class Person {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public void setName(String name) {
