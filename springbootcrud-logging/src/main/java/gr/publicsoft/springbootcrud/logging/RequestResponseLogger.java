@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -28,18 +30,32 @@ public class RequestResponseLogger extends OncePerRequestFilter implements Reque
 
     private static final String COMMA_SEPARATOR = ",";
 
+    private final List<Pattern> uriIgnorePatterns;
+
+    public RequestResponseLogger() {
+        this.uriIgnorePatterns = List.of(
+                Pattern.compile("/swagger.*$"),
+                Pattern.compile("/v3/api-docs$")
+        );
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var requestCacheWrapper = new ContentCachingRequestWrapper(request);
         var responseCacheWrapper = new ContentCachingResponseWrapper(response);
+        final var requestLog = createLogRequest(request, requestCacheWrapper);
+        boolean shouldIgnoreRequest = uriIgnorePatterns
+                .stream()
+                .anyMatch(e -> e.matcher(requestLog.getUri()).matches());
 
         filterChain.doFilter(requestCacheWrapper, responseCacheWrapper);
 
-        var requestLog = createLogRequest(request, requestCacheWrapper);
-        requestLog.setBody(!isNull(request.getCharacterEncoding()) ? getBodyFromBytes(requestCacheWrapper.getContentAsByteArray()) : "-");
-        logRequest(requestLog);
-        var logResponse = createLogResponse(response, responseCacheWrapper);
-        logResponse(logResponse);
+        if(!shouldIgnoreRequest) {
+            requestLog.setBody(!isNull(request.getCharacterEncoding()) ? getBodyFromBytes(requestCacheWrapper.getContentAsByteArray()) : "-");
+            logRequest(requestLog);
+            var logResponse = createLogResponse(response, responseCacheWrapper);
+            logResponse(logResponse);
+        }
 
         responseCacheWrapper.copyBodyToResponse();
     }
