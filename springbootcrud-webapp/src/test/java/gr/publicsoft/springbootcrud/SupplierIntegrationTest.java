@@ -106,6 +106,20 @@ public class SupplierIntegrationTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void getSupplierThatDoesNotExist() throws Exception {
+        mockMvc.perform(get("/api/suppliers/99999"))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void searchSuppliersThatDoNotExist() throws Exception {
+        mockMvc.perform(get("/api/suppliers/search/findByQuery?query=qweqweqweqwe"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.suppliers").isArray())
+            .andExpect(jsonPath("$._embedded.suppliers").isEmpty());
+    }
+
 
     private String convertToJsonString(final Object obj) throws JsonProcessingException {
         return objectMapper.writeValueAsString(obj);
