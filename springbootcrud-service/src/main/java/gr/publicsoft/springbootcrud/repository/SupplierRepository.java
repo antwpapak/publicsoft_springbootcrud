@@ -2,6 +2,7 @@ package gr.publicsoft.springbootcrud.repository;
 
 import gr.publicsoft.springbootcrud.model.Supplier;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,7 +20,7 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
     @ApiOperation("Searches for Suppliers by their company name or vat number")
     @Query("SELECT s FROM Supplier s "
             + "WHERE s.companyName LIKE CONCAT('%',?1,'%') OR s.vatNumber LIKE CONCAT('%',?1,'%')")
-    Page<Supplier> findByQuery(@Param("query") String query, Pageable pageable);
+    Page<Supplier> findByQuery(@ApiParam("The key to search against") @Param("query") String query, Pageable pageable);
 
 
 
@@ -37,7 +38,7 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
     @Override
     <S extends Supplier> S save(S s);
 
-    @ApiOperation("Deletes a Supplier")
+    @ApiOperation("Deletes a Supplier by id")
     @Override
-    void delete(Supplier supplier);
+    void deleteById(Long id);
 }

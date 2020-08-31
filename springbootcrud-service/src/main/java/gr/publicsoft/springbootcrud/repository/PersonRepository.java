@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,16 +21,16 @@ import java.util.Optional;
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @ApiOperation("Finds a Person by their email")
-    Person findByEmail(String email);
+    Person findByEmail(@ApiParam("The email to search against") String email);
 
     @ApiOperation("Fetches a list of active/inactive Persons")
-    List<Person> findByActive(boolean isActive);
+    List<Person> findByActive(@ApiParam("Whether to fetch active users or not") boolean isActive);
 
     @ApiOperation("Searches for Persons by their name or email")
     @Query("SELECT p FROM Person p "
             + "WHERE p.email LIKE CONCAT('%',?1,'%') "
             + "     OR p.name LIKE CONCAT('%',?1,'%')")
-    Page<Person> findByQuery(@Param("query") String query, Pageable pageable);
+    Page<Person> findByQuery(@ApiParam("The key to search against") @Param("query") String query, Pageable pageable);
 
     @ApiOperation("Counts active users")
     @Query("SELECT COUNT(p) FROM Person p "
@@ -52,8 +53,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Override
     <S extends Person> S save(S s);
 
-    @ApiOperation("Deletes a Person")
+    @ApiOperation("Deletes a Person by id")
     @Override
-    void delete(Person Person);
+    void deleteById(Long id);
 }
 
