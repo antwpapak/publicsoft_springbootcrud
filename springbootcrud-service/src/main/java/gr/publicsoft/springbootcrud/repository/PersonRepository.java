@@ -11,6 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:9000")
 @RepositoryRestResource
@@ -33,5 +34,24 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             + "WHERE p.isActive = true "
             + "     AND p.email IS NOT NULL ")
     Long countActiveUsers();
+
+
+    /*These are just for swagger descriptions*/
+
+    @ApiOperation("Fetches all Persons")
+    @Override
+    Page<Person> findAll(Pageable pageable);
+
+    @ApiOperation("Finds a Person by id")
+    @Override
+    Optional<Person> findById(Long id);
+
+    @ApiOperation("Saves a Person")
+    @Override
+    <S extends Person> S save(S s);
+
+    @ApiOperation("Deletes a Person")
+    @Override
+    void delete(Person Person);
 }
 

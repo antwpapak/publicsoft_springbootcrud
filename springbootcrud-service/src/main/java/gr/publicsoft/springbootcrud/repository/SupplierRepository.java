@@ -10,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:9000")
 @RepositoryRestResource
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
@@ -18,4 +20,24 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
     @Query("SELECT s FROM Supplier s "
             + "WHERE s.companyName LIKE CONCAT('%',?1,'%') OR s.vatNumber LIKE CONCAT('%',?1,'%')")
     Page<Supplier> findByQuery(@Param("query") String query, Pageable pageable);
+
+
+
+    /*These are just for swagger descriptions*/
+
+    @ApiOperation("Fetches all Suppliers")
+    @Override
+    Page<Supplier> findAll(Pageable pageable);
+
+    @ApiOperation("Finds a Supplier by id")
+    @Override
+    Optional<Supplier> findById(Long id);
+
+    @ApiOperation("Saves a Supplier")
+    @Override
+    <S extends Supplier> S save(S s);
+
+    @ApiOperation("Deletes a Supplier")
+    @Override
+    void delete(Supplier supplier);
 }
