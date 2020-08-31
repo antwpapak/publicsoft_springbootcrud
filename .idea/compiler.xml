@@ -7,13 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springbootcrud-domain" />
-        <module name="springbootcrud-service" />
+        <module name="springbootcrud-logging" />
         <module name="springbootcrud-webapp" />
+        <module name="springbootcrud-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springbootcrud" target="11" />
       <module name="springbootcrud-domain" target="11" />
+      <module name="springbootcrud-logging" target="11" />
       <module name="springbootcrud-service" target="11" />
       <module name="springbootcrud-webapp" target="11" />
     </bytecodeTargetLevel>
@@ -21,6 +23,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springbootcrud-domain" options="-parameters" />
+      <module name="springbootcrud-logging" options="-parameters" />
       <module name="springbootcrud-service" options="-parameters" />
       <module name="springbootcrud-webapp" options="-parameters" />
     </option>

@@ -24,6 +24,7 @@
         <module>springbootcrud-domain</module>
         <module>springbootcrud-service</module>
         <module>springbootcrud-webapp</module>
+        <module>springbootcrud-logging</module>
     </modules>
 
     <build>

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/springbootcrud.iml" filepath="$PROJECT_DIR$/.idea/springbootcrud.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootcrud-domain/springbootcrud-domain.iml" filepath="$PROJECT_DIR$/springbootcrud-domain/springbootcrud-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootcrud-logging/springbootcrud-logging.iml" filepath="$PROJECT_DIR$/springbootcrud-logging/springbootcrud-logging.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootcrud-service/springbootcrud-service.iml" filepath="$PROJECT_DIR$/springbootcrud-service/springbootcrud-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootcrud-webapp/springbootcrud-webapp.iml" filepath="$PROJECT_DIR$/springbootcrud-webapp/springbootcrud-webapp.iml" />
     </modules>
