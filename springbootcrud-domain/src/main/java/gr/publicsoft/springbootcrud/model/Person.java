@@ -27,7 +27,7 @@ public class Person {
     private String name;
 
     @NotBlank(message = "Email is mandatory")
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @Email
     @Size(max = SIZE_M)
     private String email;

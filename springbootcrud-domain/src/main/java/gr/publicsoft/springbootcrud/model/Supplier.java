@@ -124,4 +124,9 @@ public class Supplier {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Supplier{" + "id=" + id + ", companyName=" + companyName + ", vatNumber=" + vatNumber + '}';
+    }
 }
