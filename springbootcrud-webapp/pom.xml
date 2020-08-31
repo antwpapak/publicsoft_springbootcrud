@@ -33,7 +33,11 @@
             <artifactId>springbootcrud-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>gr.publicsoft.springbootcrud</groupId>
+            <artifactId>springbootcrud-logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
