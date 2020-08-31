@@ -17,6 +17,6 @@ public interface RequestLogger {
                 (nonNull(requestLog.getParameters()) && !requestLog.getParameters().isEmpty()) ? String.format(" | PARAMETERS: {%s}", requestLog.getParameters()) : "",
                 (nonNull(requestLog.getHeaders()) && !requestLog.getHeaders().isEmpty()) ? String.format(" | HEADERS: {%s}", requestLog.getHeaders()) : "",
                 (nonNull(requestLog.getBody()) && !requestLog.getBody().isEmpty()) ? String.format(" | BODY: %s", requestLog.getBody()) : ""
-        ));
+        ).replaceAll("\\s{2,}", " "));
     }
 }

@@ -15,6 +15,6 @@ public interface ResponseLogger {
                 responseLog.getStatusCode(),
                 (nonNull(responseLog.getHeaders()) && !responseLog.getHeaders().isEmpty()) ? String.format(" | HEADERS: {%s}", responseLog.getHeaders()) : "",
                 (nonNull(responseLog.getBody()) && !responseLog.getBody().isEmpty()) ? String.format(" | BODY: %s", responseLog.getBody()) : ""
-        ));
+        ).replaceAll("\\s{2,}", " "));
     }
 }
