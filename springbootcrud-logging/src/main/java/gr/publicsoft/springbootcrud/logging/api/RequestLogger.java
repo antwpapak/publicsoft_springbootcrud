@@ -1,7 +1,8 @@
 package gr.publicsoft.springbootcrud.logging.api;
 
-import ch.qos.logback.classic.Logger;
+
 import gr.publicsoft.springbootcrud.logging.model.RequestLog;
+import org.slf4j.Logger;
 
 import static java.util.Objects.nonNull;
 
