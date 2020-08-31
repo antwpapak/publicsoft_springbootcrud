@@ -15,7 +15,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex(".*/(suppliers|persons)/.*"))
+                .paths(PathSelectors.regex(".*/(suppliers|persons).*"))
                 .build();
     }
 }
