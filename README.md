@@ -31,13 +31,13 @@ I wrote some basic integration tests for the Supplier API.
 ### Things to Consider
 Although I adapted to the architecture of the project, there are some things that I would design differently:<br>
 * __Use DTOs:__ Exposing our entities directly to the API is considered a bad practice. The model and the API are 
-tightly coupled and there is no way to alter the one of them without affecting the other.<br>
+tightly coupled and there is no way to alter one of them without affecting the other.<br>
 By using DTOs, we hide the implementation details of our model from the web layer.
 
-* __Don't use spring-data-rest:__ Although it saves some time, using spring-data-rest is very restrictive and it makes layering of the application not possible. 
+* __Don't use spring-data-rest:__ Although it saves some time, using spring-data-rest is very restrictive and makes layering of the application not possible. 
 Services, controllers and repositories are squeezed into one, so we lose the ability to fine tune and extend the application.<br>
-Note that one other downside of using spring-data-rest is that we cannot use AspectJ annotations, as internal service methods are not
-called by any bean defined in our app. 
+Note that one other downside of using spring-data-rest is that we cannot use AspectJ annotations, because internal service methods are not
+being called by any bean defined in our app. 
 
 * __Use a search library:__ If a search feature is desired, I would go with [Hibernate Search](https://hibernate.org/search/). 
 It is highly configurable and provides fuzzy search and stemming.<br>
@@ -50,8 +50,8 @@ A simple UI for managing persons and suppliers.<br><br>
 
 Before using it be sure to install dependencies by executing `npm install` from the root directory
 of the client app.<br>
-To run it locally (on a dev server), navigate to the root folder of the client app and execute `npm start`.<br>
-To create a chunked, minified version for production use, run `npm run build`. A `dist` directory will be created, ready 
+* To run it locally (on a dev server), navigate to the root folder of the client app and execute `npm start`.<br>
+* To create a chunked, minified version for production use, run `npm run build`. A `dist` directory will be created, ready 
 to be deployed on a web server.<br>
 
 _Please note that the built version is meant to be served over HTTP. Opening_ `index.html` _on a
