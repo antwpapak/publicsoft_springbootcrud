@@ -1,15 +1,15 @@
-#Spring Boot Crud
+# Spring Boot Crud
 
-###Structural Changes
+### Structural Changes
 * Upgraded to JAVA 11
 * Upgraded Spring Boot to 2.2.5.RELEASE (due to Swagger incompatibility with spring-data-rest)
 * Added [Swagger](https://swagger.io/), [Logback](http://logback.qos.ch/) and [Lombok](https://projectlombok.org/) dependencies
 
-###API Documentation
+### API Documentation
 You can find information about the API on 
 `/swagger-ui/index.html`
 
-###Database Settings
+### Database Settings
 The database settings are configured in the `application.settings` file, located in the resources directory of the 
 `springbootcrud-webapp` module. <br>
 Currently, the settings are:
@@ -19,16 +19,16 @@ Currently, the settings are:
 
 Please edit them accordingly.
 
-###Logging
+### Logging
 Apart from the tasks asked, I also added a simple HTTP logger to log all incoming requests and their corresponding
 responses.<br>
 Currently the logs are printed on the console, but can easily be stored in the filesystem with a logback.xml configuration
 file.
 
-###Tests
+### Tests
 I wrote some basic integration tests for the Supplier API.
 
-###Things to Consider
+### Things to Consider
 Although I adapted to the architecture of the project, there are some things that I would design differently:<br>
 * __Use DTOs:__ Exposing our entities directly to the API is considered a bad practice. The model and the API are 
 tightly coupled and there is no way to alter the one of them without affecting the other.<br>
@@ -44,7 +44,7 @@ It is highly configurable and provides fuzzy search and stemming.<br>
 _(Note that using a search library is not possible now, as there is no service layer)_
 
 
-###Front-End Application
+### Front-End Application
 
 A simple UI for managing persons and suppliers.<br><br>
 
